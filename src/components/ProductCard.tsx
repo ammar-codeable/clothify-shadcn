@@ -1,3 +1,4 @@
+import { Heart, Info, ShoppingCart } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 
@@ -31,21 +32,21 @@ export function ProductCard({ product }: ProductCardProps) {
             size="icon"
             className="w-10 h-10 rounded-full shadow-md"
           >
-            <i className="fas fa-heart"></i>
+            <Heart className="h-4 w-4" />
           </Button>
           <Button
             variant="outline"
             size="icon"
             className="w-10 h-10 rounded-full shadow-md"
           >
-            <i className="fas fa-shopping-cart"></i>
+            <ShoppingCart className="h-4 w-4" />
           </Button>
           <Button
             variant="outline"
             size="icon"
             className="w-10 h-10 rounded-full shadow-md"
           >
-            <i className="fas fa-info-circle"></i>
+            <Info className="h-4 w-4" />
           </Button>
         </div>
       </div>

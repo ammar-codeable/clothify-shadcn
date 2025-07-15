@@ -1,15 +1,35 @@
+import {
+  Briefcase,
+  ChevronDown,
+  Gem,
+  Heart,
+  Home,
+  Menu,
+  Search,
+  Shirt,
+  ShoppingBag,
+  Store,
+  User
+} from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Separator } from "./ui/separator";
 import {
-	Sheet,
-	SheetContent,
-	SheetDescription,
-	SheetHeader,
-	SheetTitle,
-	SheetTrigger,
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
 } from "./ui/sheet";
+
+const iconMap = {
+  shirt: Shirt,
+  gem: Gem,
+  "shopping-bag": ShoppingBag,
+  home: Home,
+};
 
 interface MobileNavProps {
   clothingItems: {
@@ -96,21 +116,24 @@ export function MobileNav({
       subcategories?: Array<{ label: string; href: string }>;
     }>; 
     dropdownKey: string;
-  }) => (
-    <div className="space-y-1">
-      <Button
-        variant="ghost"
-        className="w-full justify-between p-2 h-auto"
-        onClick={() => toggleDropdown(dropdownKey)}
-      >
-        <div className="flex items-center space-x-3">
-          <i className={`${icon} text-gray-600`}></i>
-          <span className="font-medium text-left">{title}</span>
-        </div>
-        <i className={`fas fa-chevron-down text-xs transition-transform duration-200 ${
-          dropdownState[dropdownKey] ? 'rotate-180' : ''
-        }`}></i>
-      </Button>
+  }) => {
+    const IconComponent = iconMap[icon as keyof typeof iconMap];
+    
+    return (
+      <div className="space-y-1">
+        <Button
+          variant="ghost"
+          className="w-full justify-between p-2 h-auto"
+          onClick={() => toggleDropdown(dropdownKey)}
+        >
+          <div className="flex items-center space-x-3">
+            {IconComponent && <IconComponent className="h-4 w-4 text-gray-600" />}
+            <span className="font-medium text-left">{title}</span>
+          </div>
+          <ChevronDown className={`h-3 w-3 text-gray-600 transition-transform duration-200 ${
+            dropdownState[dropdownKey] ? 'rotate-180' : ''
+          }`} />
+        </Button>
       {dropdownState[dropdownKey] && (
         <div className="pl-8 space-y-2">
           {categories.map((category) => (
@@ -139,7 +162,8 @@ export function MobileNav({
         </div>
       )}
     </div>
-  );
+    );
+  };
 
   return (
     <>
@@ -147,7 +171,7 @@ export function MobileNav({
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="ghost" size="sm" className="md:hidden">
-            <i className="fas fa-bars text-xl"></i>
+            <Menu className="h-5 w-5" />
             <span className="sr-only">Toggle menu</span>
           </Button>
         </SheetTrigger>
@@ -155,7 +179,7 @@ export function MobileNav({
           <SheetHeader className="p-4 border-b">
             <SheetTitle className="flex items-center space-x-2 text-left">
               <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-2 rounded-lg">
-                <i className="fas fa-store text-lg"></i>
+                <Store className="h-5 w-5" />
               </div>
               <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 ShopVerse
@@ -173,14 +197,14 @@ export function MobileNav({
                 href="#"
                 className="flex items-center space-x-3 px-2 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
               >
-                <i className="fas fa-user text-gray-600"></i>
+                <User className="h-4 w-4 text-gray-600" />
                 <span className="font-medium">Account</span>
               </a>
               <a
                 href="#"
                 className="flex items-center space-x-3 px-2 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
               >
-                <i className="fas fa-heart text-gray-600"></i>
+                <Heart className="h-4 w-4 text-gray-600" />
                 <span className="font-medium">Wishlist</span>
               </a>
             </div>
@@ -221,7 +245,7 @@ export function MobileNav({
                 href="/corporate-gifting"
                 className="flex items-center space-x-3 px-2 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
               >
-                <i className="fas fa-briefcase text-gray-600"></i>
+                <Briefcase className="h-4 w-4 text-gray-600" />
                 <span className="font-medium">Corporate Gifting</span>
               </a>
             </div>
@@ -236,7 +260,7 @@ export function MobileNav({
         className="md:hidden"
         onClick={() => setShowMobileSearch(!showMobileSearch)}
       >
-        <i className="fas fa-search text-lg"></i>
+        <Search className="h-5 w-5" />
         <span className="sr-only">Toggle search</span>
       </Button>
 
@@ -253,7 +277,7 @@ export function MobileNav({
               size="sm"
               className="absolute right-1 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
             >
-              <i className="fas fa-search"></i>
+              <Search className="h-4 w-4" />
             </Button>
           </div>
         </div>
