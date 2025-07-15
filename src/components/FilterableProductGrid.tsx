@@ -41,7 +41,7 @@ export const FilterableProductGrid: React.FC<FilterableProductGridProps> = ({
   return (
     <div>
       {/* Filter Section */}
-      <div className="bg-white/80 backdrop-blur-sm shadow-sm border-b border-gray-100/50 sticky top-[180px] z-30 mb-8">
+      <div className="bg-white/80 backdrop-blur-sm shadow-sm border-b border-gray-100/50 mb-8">
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-wrap items-center justify-between gap-6">
             <CategoryFilter
