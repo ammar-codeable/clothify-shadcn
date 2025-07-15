@@ -1,16 +1,26 @@
 ---
-
+import FeaturesSection from "../components/FeaturesSection.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import HeroSection from "../components/HeroSection.astro";
+import ProductsSection from "../components/ProductsSection.astro";
+import TestimonialsSection from "../components/TestimonialsSection.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Clothify B2B - Your Fashion Supply Partner">
+	<Header />
+
+	<HeroSection />
+
+	<ProductsSection
+		title="Trending Collections"
+		subtitle="Explore our most popular products for this season"
+	/>
+
+	<FeaturesSection />
+
+	<TestimonialsSection />
+
+	<Footer />
+</Layout>

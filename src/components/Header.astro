@@ -1,0 +1,129 @@
+---
+import { NavigationDropdown } from "./NavigationDropdown";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+
+const clothingItems = [
+	{ label: "Mens", href: "/clothing/mens" },
+	{ label: "Womens", href: "/clothing/womens" },
+	{ label: "Kids", href: "/clothing/kids" },
+	{ label: "Babies", href: "/clothing/babies" },
+];
+---
+
+<header class="sticky top-0 z-50 bg-white shadow-lg border-b border-border">
+	<div
+		class="bg-gradient-to-r from-slate-800 to-slate-900 text-white text-sm py-2"
+	>
+		<div class="container mx-auto px-4 text-center">
+			<i class="fas fa-shipping-fast mr-2"></i>
+			Free shipping on orders over $200 | Fast worldwide delivery
+		</div>
+	</div>
+
+	<div class="container mx-auto px-4">
+		<div class="flex items-center justify-between py-4">
+			<!-- Logo -->
+			<a href="/" class="flex items-center space-x-2">
+				<div
+					class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-2 rounded-lg"
+				>
+					<i class="fas fa-store text-xl"></i>
+				</div>
+				<span
+					class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+				>
+					ShopVerse
+				</span>
+			</a>
+
+			<!-- Search Bar -->
+			<div class="hidden md:flex flex-1 max-w-2xl mx-8">
+				<div class="relative w-full">
+					<Input
+						type="text"
+						className="w-full px-4 py-3 pr-12 border-2 border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+						placeholder="Search for products, categories, or brands..."
+					/>
+					<Button
+						size="sm"
+						className="absolute right-1 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+					>
+						<i class="fas fa-search"></i>
+					</Button>
+				</div>
+			</div>
+
+			<!-- Header Actions -->
+			<div class="flex items-center space-x-6">
+				<Button
+					variant="ghost"
+					className="hidden md:flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors"
+				>
+					<i class="fas fa-user text-lg"></i>
+					<span class="font-medium">Account</span>
+				</Button>
+				<Button
+					variant="ghost"
+					className="hidden md:flex items-center space-x-2 text-gray-600 hover:text-red-500 transition-colors"
+				>
+					<i class="fas fa-heart text-lg"></i>
+					<span class="font-medium">Wishlist</span>
+				</Button>
+				<Button
+					variant="ghost"
+					className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors relative"
+				>
+					<i class="fas fa-shopping-cart text-lg"></i>
+					<span class="hidden sm:inline font-medium">Cart</span>
+					<span
+						class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+						>0</span
+					>
+				</Button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Navigation -->
+	<nav class="border-t border-gray-200 bg-gray-50">
+		<div class="container mx-auto px-4">
+			<ul class="flex items-center justify-center space-x-12 py-4">
+				<li>
+					<NavigationDropdown
+						title="Clothing"
+						items={clothingItems}
+						client:load
+					/>
+				</li>
+				<li>
+					<Button
+						variant="ghost"
+						className="text-gray-700 hover:text-blue-600 transition-colors font-semibold flex items-center space-x-1 p-2"
+					>
+						<i class="fas fa-laptop text-sm"></i>
+						<span>Electronics</span>
+					</Button>
+				</li>
+				<li>
+					<Button
+						variant="ghost"
+						className="text-gray-700 hover:text-green-600 transition-colors font-semibold flex items-center space-x-1 p-2"
+					>
+						<i class="fas fa-home text-sm"></i>
+						<span>Home & Garden</span>
+					</Button>
+				</li>
+				<li>
+					<Button
+						variant="ghost"
+						className="text-gray-700 hover:text-pink-600 transition-colors font-semibold flex items-center space-x-1 p-2"
+					>
+						<i class="fas fa-spa text-sm"></i>
+						<span>Beauty</span>
+					</Button>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</header>

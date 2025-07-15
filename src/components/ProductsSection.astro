@@ -1,0 +1,86 @@
+---
+import { ProductCard } from "@/components/ProductCard";
+import { Button } from "./ui/button";
+
+const products = [
+	{
+		id: "p001",
+		name: "Classic Cotton T-Shirt",
+		category: "Men's Apparel",
+		price: 8.5,
+		minOrder: 50,
+		imageUrl:
+			"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80",
+	},
+	{
+		id: "p002",
+		name: "Premium Denim Jeans",
+		category: "Women's Apparel",
+		price: 18.75,
+		minOrder: 30,
+		imageUrl:
+			"https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
+	},
+	{
+		id: "p003",
+		name: "Cotton Oxford Shirt",
+		category: "Men's Apparel",
+		price: 12.99,
+		minOrder: 40,
+		imageUrl:
+			"https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1325&q=80",
+	},
+	{
+		id: "p004",
+		name: "Summer Floral Dress",
+		category: "Women's Apparel",
+		price: 15.5,
+		minOrder: 25,
+		imageUrl:
+			"https://images.unsplash.com/photo-1572804013427-4d7ca7268217?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1365&q=80",
+	},
+];
+
+interface Props {
+	title: string;
+	subtitle?: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<section class="py-16">
+	<div class="container mx-auto px-4">
+		<div class="text-center mb-12">
+			<h2 class="text-3xl md:text-4xl font-bold text-foreground mb-2">
+				{title}
+			</h2>
+			{
+				subtitle && (
+					<p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+						{subtitle}
+					</p>
+				)
+			}
+		</div>
+
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+			{
+				products.map((product) => (
+					<ProductCard product={product} client:load />
+				))
+			}
+		</div>
+
+		<div class="text-center">
+			<Button
+				variant="outline"
+				size="lg"
+				className="rounded-full px-8"
+				client:load
+			>
+				View All Products
+			</Button>
+		</div>
+	</div>
+</section>
