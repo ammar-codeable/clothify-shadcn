@@ -12,10 +12,54 @@ import {
 } from "./ui/sheet";
 
 interface MobileNavProps {
-  clothingItems: Array<{ label: string; href: string }>;
-  accessoriesItems: Array<{ label: string; href: string }>;
-  bagsFootwearItems: Array<{ label: string; href: string }>;
-  homeKitchenItems: Array<{ label: string; href: string }>;
+  clothingItems: {
+    title: string;
+    icon: string;
+    categories: Array<{
+      label: string;
+      href: string;
+      subcategories?: Array<{
+        label: string;
+        href: string;
+      }>;
+    }>;
+  };
+  accessoriesItems: {
+    title: string;
+    icon: string;
+    categories: Array<{
+      label: string;
+      href: string;
+      subcategories?: Array<{
+        label: string;
+        href: string;
+      }>;
+    }>;
+  };
+  bagsFootwearItems: {
+    title: string;
+    icon: string;
+    categories: Array<{
+      label: string;
+      href: string;
+      subcategories?: Array<{
+        label: string;
+        href: string;
+      }>;
+    }>;
+  };
+  homeKitchenItems: {
+    title: string;
+    icon: string;
+    categories: Array<{
+      label: string;
+      href: string;
+      subcategories?: Array<{
+        label: string;
+        href: string;
+      }>;
+    }>;
+  };
 }
 
 interface DropdownState {
@@ -41,12 +85,16 @@ export function MobileNav({
   const MobileDropdown = ({ 
     title, 
     icon, 
-    items, 
+    categories, 
     dropdownKey 
   }: { 
     title: string; 
     icon: string; 
-    items: Array<{ label: string; href: string }>; 
+    categories: Array<{ 
+      label: string; 
+      href: string; 
+      subcategories?: Array<{ label: string; href: string }>;
+    }>; 
     dropdownKey: string;
   }) => (
     <div className="space-y-1">
@@ -64,15 +112,29 @@ export function MobileNav({
         }`}></i>
       </Button>
       {dropdownState[dropdownKey] && (
-        <div className="pl-8 space-y-1">
-          {items.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="block px-2 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded transition-colors"
-            >
-              {item.label}
-            </a>
+        <div className="pl-8 space-y-2">
+          {categories.map((category) => (
+            <div key={category.label} className="space-y-1">
+              <a
+                href={category.href}
+                className="block px-2 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded transition-colors"
+              >
+                {category.label}
+              </a>
+              {category.subcategories && (
+                <div className="pl-4 space-y-1">
+                  {category.subcategories.map((subcategory) => (
+                    <a
+                      key={subcategory.label}
+                      href={subcategory.href}
+                      className="block px-2 py-1 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded transition-colors"
+                    >
+                      {subcategory.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </div>
       )}
@@ -128,30 +190,30 @@ export function MobileNav({
             {/* Navigation Categories */}
             <div className="space-y-2">
               <MobileDropdown
-                title="Clothing"
-                icon="fas fa-tshirt"
-                items={clothingItems}
+                title={clothingItems.title}
+                icon={clothingItems.icon}
+                categories={clothingItems.categories}
                 dropdownKey="clothing"
               />
               
               <MobileDropdown
-                title="Accessories"
-                icon="fas fa-ring"
-                items={accessoriesItems}
+                title={accessoriesItems.title}
+                icon={accessoriesItems.icon}
+                categories={accessoriesItems.categories}
                 dropdownKey="accessories"
               />
               
               <MobileDropdown
-                title="Bags & Footwear"
-                icon="fas fa-shopping-bag"
-                items={bagsFootwearItems}
+                title={bagsFootwearItems.title}
+                icon={bagsFootwearItems.icon}
+                categories={bagsFootwearItems.categories}
                 dropdownKey="bagsFootwear"
               />
               
               <MobileDropdown
-                title="Home & Kitchen"
-                icon="fas fa-home"
-                items={homeKitchenItems}
+                title={homeKitchenItems.title}
+                icon={homeKitchenItems.icon}
+                categories={homeKitchenItems.categories}
                 dropdownKey="homeKitchen"
               />
 
