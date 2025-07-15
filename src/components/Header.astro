@@ -9,6 +9,22 @@ const clothingItems = [
 	{ label: "Kids", href: "/clothing/kids" },
 	{ label: "Babies", href: "/clothing/babies" },
 ];
+
+const accessoriesItems = [
+	{ label: "Fashion Accessories", href: "/accessories/fashion" },
+	{ label: "Utility Accessories", href: "/accessories/utility" },
+];
+
+const bagsFootwearItems = [
+	{ label: "Bags", href: "/bags-footwear/bags" },
+	{ label: "Footwear", href: "/bags-footwear/footwear" },
+	{ label: "Travel Luggage", href: "/bags-footwear/travel" },
+];
+
+const homeKitchenItems = [
+	{ label: "Home Essentials", href: "/home-kitchen/home" },
+	{ label: "Kitchen & Dining", href: "/home-kitchen/kitchen" },
+];
 ---
 
 <header class="sticky top-0 z-50 bg-white shadow-lg border-b border-border">
@@ -92,36 +108,43 @@ const clothingItems = [
 				<li>
 					<NavigationDropdown
 						title="Clothing"
+						icon="fas fa-tshirt"
 						items={clothingItems}
 						client:load
 					/>
 				</li>
 				<li>
-					<Button
-						variant="ghost"
-						className="text-gray-700 hover:text-blue-600 transition-colors font-semibold flex items-center space-x-1 p-2"
-					>
-						<i class="fas fa-laptop text-sm"></i>
-						<span>Electronics</span>
-					</Button>
+					<NavigationDropdown
+						title="Accessories"
+						icon="fas fa-ring"
+						items={accessoriesItems}
+						client:load
+					/>
 				</li>
 				<li>
-					<Button
-						variant="ghost"
-						className="text-gray-700 hover:text-green-600 transition-colors font-semibold flex items-center space-x-1 p-2"
-					>
-						<i class="fas fa-home text-sm"></i>
-						<span>Home & Garden</span>
-					</Button>
+					<NavigationDropdown
+						title="Bags & Footwear"
+						icon="fas fa-shopping-bag"
+						items={bagsFootwearItems}
+						client:load
+					/>
 				</li>
 				<li>
-					<Button
-						variant="ghost"
-						className="text-gray-700 hover:text-pink-600 transition-colors font-semibold flex items-center space-x-1 p-2"
+					<NavigationDropdown
+						title="Home & Kitchen"
+						icon="fas fa-home"
+						items={homeKitchenItems}
+						client:load
+					/>
+				</li>
+				<li>
+					<a
+						href="/corporate-gifting"
+						class="text-gray-700 hover:text-purple-600 transition-colors font-semibold flex items-center space-x-1 p-2 cursor-pointer"
 					>
-						<i class="fas fa-spa text-sm"></i>
-						<span>Beauty</span>
-					</Button>
+						<i class="fas fa-briefcase text-sm"></i>
+						<span>Corporate Gifting</span>
+					</a>
 				</li>
 			</ul>
 		</div>

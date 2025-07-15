@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from "react";
 
 interface NavigationDropdownProps {
   title: string;
+  icon?: string;
   items: Array<{
     label: string;
     href: string;
   }>;
 }
 
-export function NavigationDropdown({ title, items }: NavigationDropdownProps) {
+export function NavigationDropdown({ title, icon, items }: NavigationDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -39,7 +40,8 @@ export function NavigationDropdown({ title, items }: NavigationDropdownProps) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <button className="flex items-center space-x-1 px-4 py-2 text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 group">
+      <button className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200 group">
+        {icon && <i className={`${icon} text-sm`}></i>}
         <span>{title}</span>
         <i className={`fas fa-chevron-down text-xs transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}></i>
       </button>
@@ -79,6 +81,20 @@ function getIconForCategory(label: string): string {
       return 'fa-child';
     case 'babies':
       return 'fa-baby';
+    case 'fashion accessories':
+      return 'fa-gem';
+    case 'utility accessories':
+      return 'fa-tools';
+    case 'bags':
+      return 'fa-shopping-bag';
+    case 'footwear':
+      return 'fa-shoe-prints';
+    case 'travel luggage':
+      return 'fa-suitcase-rolling';
+    case 'home essentials':
+      return 'fa-home';
+    case 'kitchen & dining':
+      return 'fa-utensils';
     default:
       return 'fa-tag';
   }
